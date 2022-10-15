@@ -2,7 +2,6 @@
 Migration of server from on premise instance to GCP instance.
 
 
-
 ## Implementation
 
 - Create a GCP project with name `anthos-test` and make sure billing is enabled.
