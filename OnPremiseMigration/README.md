@@ -16,7 +16,7 @@ Migration of server from on premise instance to GCP instance.
 	- `gcloud compute firewall-rules create allow-http --network default --allow tcp:80 --source-ranges 0.0.0.0/0`
 
 - Create the VM to be used for hosting server in GCP.
-	- `gcloud compute instances create rkb-01 --project=$DEVSHELL_PROJECT_ID --zone=us-west1-a --machine-type=n1-standard-1 --subnet=default --scopes="cloud-platform" --tags=http-server,https-server --image=ubuntu-minimal-1604-xenial-v20210119a --image-project=ubuntu-os-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=rkb-01`
+	- `gcloud compute instances create vm-instance-01 --project=$DEVSHELL_PROJECT_ID --zone=us-west1-a --machine-type=n1-standard-1 --subnet=default --scopes="cloud-platform" --tags=http-server,https-server --image=ubuntu-minimal-1604-xenial-v20210119a --image-project=ubuntu-os-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=vm-instance-01`
 
 - Generating key pair and setting up the permissions.
 	- `ssh-keygen -t rsa -f ~/.ssh/app-key -C [USERNAME]`
@@ -40,4 +40,4 @@ Migration of server from on premise instance to GCP instance.
 
 - Copy the External IP of the Compute Engine created and access it via browser to validate if the move to GCP  was completed successfully.
 
-- Stop VM instances: rkb-01.
+- Stop VM instances: vm-instance-01.
