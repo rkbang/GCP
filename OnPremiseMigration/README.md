@@ -6,8 +6,13 @@ Migration of server from on premise instance to GCP instance.
 
 - Create a GCP project with name `anthos-test` and make sure billing is enabled.
 
-- Run `gcloud config set project anthos-test`
+- Run `gcloud config set project [project-id]`
 	- Now the variable $DEVSHELL_PROJECT_ID has the value anthos-test project ID.
+
+- Enable following API via Enable *APIs & Services*
+    - Cloud Resource Manager API
+    - Compute Engine API
+    - Kubernetis Engine API
 
 - Run `gcloud config set compute/zone us-west1-a` to set the zone.  
   
@@ -21,7 +26,7 @@ Migration of server from on premise instance to GCP instance.
 - Generating key pair and setting up the permissions.
 	- `ssh-keygen -t rsa -f ~/.ssh/app-key -C [USERNAME]`
 	- `chmod 400 ~/.ssh/app-key`
-	- Checking the changes permission:  `ls -l | grep app-key`  
+	- Checking the changes permission:  `ls -l ~/.ssh | grep app-key`  
   
 - Importing the key pair generated to Google Cloud:
 	- `gcloud compute config-ssh --ssh-key-file=~/.ssh/app-key`
