@@ -6,7 +6,11 @@
 
 ## Implementation
 
+Following implementation has the instance name as "vm-instance-01" which will be used for migration. Please update to specific instance name as needed.
+
 **GKE**  
+  - Stop the existing instance which needed to be migrated to Anthos.
+   
   - Create GKE cluster using gcloud command:
 	  - `gcloud container clusters create vm-instance-01 --project=$DEVSHELL_PROJECT_ID --zone=us-west1-a --machine-type n1-standard-4 --cluster-version=1.21 --release-channel=stable --image-type ubuntu --num-nodes 1 --logging=SYSTEM --monitoring=SYSTEM --subnetwork "projects/$DEVSHELL_PROJECT_ID/regions/us-west1/subnetworks/default"`  
   
@@ -29,7 +33,7 @@
   
 - Running the command below to validate the Migrate for Anthos installation:
 	- `migctl doctor`
-	-  After 2-3 minutes you will see the success status indicating that the Deployment step has been completed: [✓] Deployment  
+	-  After 2-3 minutes you will see the success status indicating that the Deployment step has been completed: *[✓] Deployment*  
   
 **Steps for VM migration**  
   
@@ -37,10 +41,10 @@
 	- `gcloud iam service-accounts create rkb-m4a-ce-src --project=$DEVSHELL_PROJECT_ID`
 
 - Assigning the role compute.viewer to a service account rkb-m4a-ce-src:
-	- `gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=serviceAccount:rkb-m4a-ce-src@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role=roles/compute.viewer`  
+	- `gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member="serviceAccount:rkb-m4a-ce-src@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com" --role="roles/compute.viewer"`  
   
 - Assigning the role de compute.storageAdmin to a service account rkb-m4a-ce-src:
-	- `gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=serviceAccount:rkb-m4a-ce-src@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --role=roles/compute.storageAdmin`  
+	- `gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member="serviceAccount:rkb-m4a-ce-src@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com" --role="roles/compute.storageAdmin"`  
   
 - Creating and downloading the service account rkb-m4a-ce-src key:
 	- `gcloud iam service-accounts keys create rkb-m4a-ce-src.json --iam-account=rkb-m4a-ce-src@$DEVSHELL_PROJECT_ID.iam.gserviceaccount.com --project=$DEVSHELL_PROJECT_ID`  
