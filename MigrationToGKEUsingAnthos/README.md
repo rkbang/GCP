@@ -1,16 +1,15 @@
 # Migration to Kubernetis using Anthos
+Migrating the existing project using virtual instance to host services to use Google Kubernetes Engine(GKE) cluster using Migrate for Anthos.
 
-
-
-
+![](design.png)
 
 ## Implementation
 
-Following implementation has the instance name as "vm-instance-01" which will be used for migration. Please update to specific instance name as needed.
+Following implementation has the instance name as "vm-instance-01" which will be used for migration. Please update to specific instance name as needed. Make sure the instance is *STOPPED* before starting the migration.
 
 **GKE**  
   - Stop the existing instance which needed to be migrated to Anthos.
-   
+
   - Create GKE cluster using gcloud command:
 	  - `gcloud container clusters create vm-instance-01 --project=$DEVSHELL_PROJECT_ID --zone=us-west1-a --machine-type n1-standard-4 --cluster-version=1.21 --release-channel=stable --image-type ubuntu --num-nodes 1 --logging=SYSTEM --monitoring=SYSTEM --subnetwork "projects/$DEVSHELL_PROJECT_ID/regions/us-west1/subnetworks/default"`  
   
