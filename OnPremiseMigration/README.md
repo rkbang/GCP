@@ -1,6 +1,7 @@
 # Migration to GCP
 Migration of server from on premise instance to GCP instance.
 
+![](design.png)
 
 ## Implementation
 
